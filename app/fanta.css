@@ -63,7 +63,7 @@
     --text-selection: '';
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
         --background-primary: #05070f;
         --background-secondary: #0e101e;
@@ -110,7 +110,7 @@
 
         --text-selection: '';
     }
-}
+} */
 
 * {
     margin: 0;
@@ -163,7 +163,8 @@ h3 {
     line-height: 1.75rem;
 }
 
-h4 {
+h4,
+text-medium {
     font-size: 1.125rem;
     line-height: 1.75rem;
 }
@@ -683,7 +684,8 @@ details[open] summary {
         line-height: 2rem;
     }
 
-    h4 {
+    h4,
+    text-medium {
         font-size: 1.25rem;
         line-height: 1.75rem;
     }
