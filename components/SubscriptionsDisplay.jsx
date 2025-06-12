@@ -1,7 +1,7 @@
 import { getDaysUntilNextCharge, subscriptions } from "@/utils";
 
-export default function SubscriptionsDisplay() {
-
+export default function SubscriptionsDisplay(props) {
+    const { handleShowInput, showAddNewSubscription } = props;
 
     return (
         <section>
@@ -53,10 +53,12 @@ export default function SubscriptionsDisplay() {
                         </div>
                     )
                 })}
-                <button className="button-card add-subscriptions">
-                    <i className="fa-solid fa-plus"></i>
-                    <h5>Add new Subscription</h5>
-                </button>
+                {showAddNewSubscription &&
+                    <button onClick={handleShowInput} className="button-card add-subscriptions">
+                        <i className="fa-solid fa-plus"></i>
+                        <h5>Add new Subscription</h5>
+                    </button>
+                }
             </div>
         </section>
     )
