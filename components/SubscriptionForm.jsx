@@ -1,39 +1,20 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useAuth } from "@/context/AuthContext";
+
 
 export default function SubscriptionForm(props) {
 
-  const { onSubmit, closeInput } = props;
+  const { onSubmit, closeInput, formData, handleChangeInput, handleResetForm } = props;
 
-  const [formData, setFormData] = useState({
-    name: '',
-    category: 'Web Services',
-    cost: '',
-    currency: 'RUP',
-    billingFrequency: 'Monthly',
-    nextBillingDate: '',
-    paymentMethod: 'UPI',
-    startDate: '',
-    renewalType: '',
-    notes: '',
-    status: 'Active'
-  });
-
-
-  function handleChangeInput(e) {
-    const newData = {
-      ...formData,
-      [e.target.name]: e.target.value
-    }
-
-    setFormData(newData);
-  }
+  const { handleAddSubscription } = useAuth();
 
   function handleFormSubmit(e) {
     e.preventDefault(); // prevent the random as behavior of reloading the webpage
 
-    onSubmit();
+    handleAddSubscription(formData);
+    handleResetForm();
+    closeInput();
   }
 
 
@@ -68,7 +49,7 @@ export default function SubscriptionForm(props) {
         <label>
           <span>Currency</span>
           <select value={formData.currency} onChange={handleChangeInput} name='currency'>
-            {['RUP', 'USD', 'EUR', 'GBP', 'NZD', 'AUD', 'Other'].map((cur, curIndex) => {
+            {['INR', 'USD', 'EUR', 'GBP', 'NZD', 'AUD', 'Other'].map((cur, curIndex) => {
               return (
                 <option key={curIndex}>{cur}</option>
               )
