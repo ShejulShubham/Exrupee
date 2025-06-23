@@ -16,10 +16,10 @@ export default function GoTo() {
         <div className="goto">
             {path == '/' && (
                 <>
-                    <Link href={'dashboard?register=true'} >
+                    <Link href={'/dashboard?register=true'} >
                         <p>Sign up</p>
                     </Link>
-                    <Link href={'dashboard'} >
+                    <Link href={'/dashboard'} >
                         <button>Login &rarr;</button>
                     </Link>
                 </>
