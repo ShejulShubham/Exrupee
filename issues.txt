@@ -1,3 +1,4 @@
 1. set error message for wrong login credential
 2. set message for successful login and signup
-3.
+3. fix the position of home page title
+4. 
