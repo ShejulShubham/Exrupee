@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
             <button disabled>Install app</button>
           </div>
           <p className="copyright">
-            © Copyright 2024-2025, James McArthur.
+            © Copyright 2024-2025, Shubham Shejul.
             <br />
             All rights reserved.
           </p>

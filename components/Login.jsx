@@ -44,6 +44,7 @@ export default function Login() {
     return (
         <div className="login">
             <h2>{isRegistration ? "Create an Account" : "Login"}</h2>
+            <div className="message"><p>Create your free account or Login with <strong>test@gmail.com</strong> and password as <strong>'password'</strong></p></div>
             {errorMessage && <div><p>❌ {errorMessage}</p></div>}
             <input value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" />
             <input value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" type="password" />

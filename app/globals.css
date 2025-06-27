@@ -315,6 +315,10 @@ form textarea {
   gap: 1rem;
 }
 
+.message > p:first-of-type {
+  background-color: aquamarine;
+}
+
 /* footer */
 
 footer {
