@@ -319,6 +319,10 @@ form textarea {
   background-color: aquamarine;
 }
 
+.password {
+  display: flex;
+}
+
 /* footer */
 
 footer {

@@ -34,7 +34,7 @@ export function toastDrawer(message) {
       expandedContent: (
         <div className="p-4 bg-white lg max-w-md">
           <h3 className="fond-mono font-bold mb-4">
-            Use following Details for login
+            Use following Details to login
           </h3>
           <div className="space-y-4 border-t pt-4">
             <p className="text-gray-700 text-center">
