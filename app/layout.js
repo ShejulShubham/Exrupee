@@ -4,6 +4,7 @@ import Head from "./Head";
 import Link from "next/link";
 import GoTo from "@/components/GoTo";
 import { AuthProvider } from "@/context/AuthContext";
+import Toaster from "@/components/Toaster";
 
 export const metadata = {
   title: "Exrupee ⋅ The Subscription tracker",
@@ -60,6 +61,7 @@ export default function RootLayout({ children }) {
       <Head />
       <AuthProvider>
         <body>
+          <Toaster />
           {header}
           <div className="full-line" />
           <main>{children}</main>

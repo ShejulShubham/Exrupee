@@ -662,6 +662,18 @@ details[open] summary {
     opacity: 0.6;
 }
 
+.heading {
+    font-size: large;
+}
+
+.details {
+    text-align: center;
+}
+
+.color {
+    background-color: #adc6fd47;
+}
+
 
 @media (min-width: 640px) {
     body {

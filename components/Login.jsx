@@ -1,8 +1,10 @@
 'use client'
 
+import { toastDrawer, toastError, toastSuccess } from "@/app/toast_utils";
+import { checkEmailError, checkPasswordError, isValidEmail, isValidPassword } from "@/app/utils";
 import { useAuth } from "@/context/AuthContext";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Login() {
 
@@ -13,39 +15,60 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isRegistration, setIsRegistration] = useState(isRegisterParameter);
-    const [errorMessage, setErrorMessage] = useState(null);
     const [isAuthenticating, setIsAuthenticating] = useState(false);
 
     const { signup, login } = useAuth();
 
     async function handleAuthenticate() {
-        if (!email || !email.includes('@') || password.length < 6 || isAuthenticating) { return }
+        if (isAuthenticating) { return }
 
-        setErrorMessage(null);
+        if (!isValidEmail(email)) {
+            let errorMessage = checkEmailError(email);
+            toastError(errorMessage);
+            return;
+        } else if (!isValidPassword(password)) {
+            let errorMessage = checkPasswordError(password);
+            toastError(errorMessage);
+            return;
+        }
+
+
         setIsAuthenticating(true);
+        let message = "";
 
         try {
             if (isRegistration) {
                 await signup(email, password);
-
+                message = "Signed Up"
             } else {
                 await login(email, password);
+                message = "Logged In"
             }
+
+            toastSuccess(`${message} successfully!`)
 
         } catch (error) {
             console.log(error.message);
-            setErrorMessage(error.message);
+            if (error.message == "Firebase: Error (auth/invalid-credential).") {
+                toastError("Please Enter Valid Credentials");
+            } else {
+                toastError("Please try again after some time!");
+            }
         } finally {
             setIsAuthenticating(false);
         }
 
     }
 
+    useEffect(() => {
+        toastDrawer("Create your free account or Login with default account");
+        return;
+    }, [])
+
     return (
         <div className="login">
             <h2>{isRegistration ? "Create an Account" : "Login"}</h2>
-            <div className="message"><p>Create your free account or Login with <strong>test@gmail.com</strong> and password as <strong>'password'</strong></p></div>
-            {errorMessage && <div><p>❌ {errorMessage}</p></div>}
+            {/* <div className="message"><p>Create your free account or Login with default account <strong>test@gmail.com</strong> and password as <strong>'password'</strong></p></div> */}
             <input value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" />
             <input value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" type="password" />
             <button onClick={handleAuthenticate} disabled={isAuthenticating}>{isAuthenticating ? "Submitting..." : "Submit"}
