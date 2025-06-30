@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function key_listener(key, elementId) {
+export function KeyListener(key, elementId) {
   useEffect(() => {
     function handler(e) {
       if (e.key === key) {
