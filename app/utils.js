@@ -32,3 +32,18 @@ export function checkPasswordError(password) {
 
   return null;
 }
+
+export function clickElementOnKey(elementId, key) {
+  function handler(e) {
+    if (e.key === key) {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.click();
+      } else {
+        console.warn(`Element with id "${elementId}" not found.`);
+      }
+    }
+  }
+
+  document.addEventListener("keyup", handler);
+}
